@@ -18,9 +18,11 @@ Append an entry to `sites.json` without removing unrelated entries. Required fie
 
 ## Checks and publication
 
+Before publishing or updating a page, read `.agents/skills/github-pages-publisher/SKILL.md`.
+
 Run `python scripts/check.py` and preview from the repository root with `python -m http.server 8000`. Check the page on desktop and mobile, all local resource links, graph interactions and calculators. Preserve source links, research dates and labels for simulated data. Never invent API test results.
 
-GitHub Pages uses the `main` branch and repository root. Keep `.nojekyll`. After committing, inspect the Pages deployment run and verify the exact public nested URL. A successful file commit is not proof that publishing has finished.
+GitHub Pages uses the `main` branch and repository root. Keep `.nojekyll`. After committing, inspect the Pages deployment run and verify the exact public nested URL. A successful file commit is not proof that publishing has finished. A public HTTP 200 is not proof that the newest content is live; verify the deployed commit or page version/content as described by the publishing skill.
 
 ## Safety and scope
 
