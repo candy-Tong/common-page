@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "user_url": "https://claude.dev/blog/automating-eval-design-and-hillclimbing/",
+  "primary_source_id": "S1",
+  "claims_complete": false,
+  "scope_note": "Principle-focused companion page; it does not attempt to reproduce every numerical example from the article.",
+  "sources": [
+    {
+      "id": "S1",
+      "role": "primary",
+      "url": "https://claude.dev/blog/automating-eval-design-and-hillclimbing/",
+      "locator": "full article text retrieved 2026-09-29",
+      "read_status": "full"
+    },
+    {
+      "id": "S2",
+      "role": "official",
+      "url": "https://github.com/anthropics/skills/blob/8a1541c4a3ffa5a20a5a91de0dcf3f0bab1d1ef4/skills/claude-api/shared/evals/build-eval.md",
+      "locator": "eval design / grader / runner sections",
+      "read_status": "partial",
+      "visible_gap_text": "官方工作流仅核对与本页原理相关的章节，不声称逐行复核整个文件。"
+    },
+    {
+      "id": "S3",
+      "role": "official",
+      "url": "https://github.com/anthropics/skills/blob/8a1541c4a3ffa5a20a5a91de0dcf3f0bab1d1ef4/skills/claude-api/shared/evals/eval-hillclimb.md",
+      "locator": "Steps 0-4, split / noise / analyze-apply-run-record",
+      "read_status": "partial",
+      "visible_gap_text": "官方工作流仅核对与本页原理相关的章节，不声称逐行复核整个文件。"
+    }
+  ],
+  "expected_original_ids": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    "P6"
+  ],
+  "coverage": [
+    {
+      "id": "P1",
+      "kind": "principle",
+      "source": "S1",
+      "locator": "Eval design: four common elements",
+      "anchor": "#eval",
+      "status": "covered"
+    },
+    {
+      "id": "P2",
+      "kind": "principle",
+      "source": "S1",
+      "locator": "Hillclimbing: cheap iteration / attributable / well-scoped objective",
+      "anchor": "#search",
+      "status": "covered"
+    },
+    {
+      "id": "P3",
+      "kind": "principle",
+      "source": "S3",
+      "locator": "Each round analyze -> apply -> run -> record",
+      "anchor": "#loop",
+      "status": "covered"
+    },
+    {
+      "id": "P4",
+      "kind": "principle",
+      "source": "S1",
+      "locator": "Overfitting section and train/test split guidance",
+      "anchor": "#overfit",
+      "status": "covered"
+    },
+    {
+      "id": "P5",
+      "kind": "principle",
+      "source": "S3",
+      "locator": "Step 0.5 noise floor and smallest actionable improvement",
+      "anchor": "#noise",
+      "status": "covered"
+    },
+    {
+      "id": "P6",
+      "kind": "analysis",
+      "source": "S1",
+      "locator": "Combined interpretation of eval signal and hillclimbing constraints",
+      "anchor": "#limits",
+      "status": "covered"
+    }
+  ]
+}

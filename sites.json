@@ -8,7 +8,14 @@
       "category": "研究 / AI AGENTS",
       "path": "research/agents/jev-claude/",
       "date": "2026-09-29",
-      "tags": ["Jev", "Claude", "Agent", "落地案例", "企业流程", "Hooks"]
+      "tags": [
+        "Jev",
+        "Claude",
+        "Agent",
+        "落地案例",
+        "企业流程",
+        "Hooks"
+      ]
     },
     {
       "id": "claude-eval-hillclimb",
@@ -17,7 +24,31 @@
       "category": "研究 / AI AGENTS",
       "path": "research/agents/claude-eval-hillclimb/",
       "date": "2026-09-29",
-      "tags": ["Claude", "Eval", "Hillclimbing", "评估设计", "提示词优化", "成本优化"]
+      "tags": [
+        "Claude",
+        "Eval",
+        "Hillclimbing",
+        "评估设计",
+        "提示词优化",
+        "成本优化"
+      ]
+    },
+    {
+      "id": "claude-eval-principles",
+      "title": "为什么 Hillclimb 有效？｜Claude Eval 原理解析",
+      "description": "白色主题原理可视化：把 Eval 拆成测量函数，把 Hillclimb 拆成有护栏的局部搜索，并交互演示 train/test、过拟合、噪声与保留/回滚机制。",
+      "category": "研究 / AI AGENTS",
+      "path": "research/agents/claude-eval-principles/",
+      "date": "2026-09-29",
+      "tags": [
+        "Claude",
+        "Eval",
+        "Hillclimb",
+        "原理解析",
+        "局部搜索",
+        "过拟合",
+        "白色主题"
+      ]
     }
   ]
 }
