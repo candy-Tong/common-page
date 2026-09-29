@@ -3,12 +3,12 @@
   "sites": [
     {
       "id": "jev-claude",
-      "title": "谁来做判断？Jev × Claude",
-      "description": "一篇降本文章的机制拆解：论证图、三个调用演示、费用计算器，以及可靠性与安全边界。",
+      "title": "Jev 怎样落地｜企业流程与接入案例",
+      "description": "原帖十步架构、并行工单判断、缓存与上下文管理、三个 Claude Code 接入案例及六类已有实践。主帖、引用文章与教学模拟分别标注。",
       "category": "研究 / AI AGENTS",
       "path": "research/agents/jev-claude/",
       "date": "2026-09-29",
-      "tags": ["Jev", "Claude", "Agent", "降本", "论证图"]
+      "tags": ["Jev", "Claude", "Agent", "落地案例", "企业流程", "Hooks"]
     }
   ]
 }
