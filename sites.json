@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "sites": [
+    {
+      "id": "jev-claude",
+      "title": "谁来做判断？Jev × Claude",
+      "description": "一篇降本文章的机制拆解：论证图、三个调用演示、费用计算器，以及可靠性与安全边界。",
+      "category": "研究 / AI AGENTS",
+      "path": "research/agents/jev-claude/",
+      "date": "2026-09-29",
+      "tags": ["Jev", "Claude", "Agent", "降本", "论证图"]
+    }
+  ]
+}
