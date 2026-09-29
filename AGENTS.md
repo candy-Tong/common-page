@@ -25,3 +25,18 @@ GitHub Pages uses the `main` branch and repository root. Keep `.nojekyll`. After
 ## Safety and scope
 
 Do not commit secrets, tokens, private account data or files from other projects. Read the current branch and existing files before replacing content; preserve concurrent changes. Make GitHub changes through the GitHub connector when that is the user's requested workflow. Do not use credential extraction or browser automation as a substitute.
+
+## Research analysis workflow
+
+Before creating or revising a research page, read `.agents/skills/map-claims-and-evidence/SKILL.md` and its review checklist. Preserve the user's original source identity, its quoted material, original implementation examples and unread-media boundaries. Do not replace original examples with unlabeled teaching simulations.
+
+Keep a project-local `source-map.json` for detailed research. Validate its declared source and case mapping with:
+
+```sh
+python .agents/skills/map-claims-and-evidence/scripts/check_coverage.py research/agents/jev-claude/source-map.json research/agents/jev-claude/index.html
+python -m unittest discover -s .agents/skills/map-claims-and-evidence/scripts -p test_coverage.py
+```
+
+The checker verifies structure, not semantic truth. `STRUCTURE_OK_WITH_GAPS` permits only an explicitly scoped partial report, never a claim that all attachments were reviewed. Use `--require-complete` when completeness is a release requirement. Record actual publication and test results; compare the live page's version marker or content hash with the tested artifact when possible.
+
+This is a versioned repository skill. Its presence is not evidence that a separately installed personal ChatGPT skill has been updated.

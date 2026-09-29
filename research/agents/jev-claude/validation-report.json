@@ -1,0 +1,18 @@
+{
+  "revision": "2026-09-29-implementation-v2",
+  "page_commit": "41d5260ca88a2d8aca379876fa9279d3ccea6e21",
+  "tested_html_bytes": 43513,
+  "tested_html_git_blob_sha": "bd47baccb0ffaff6592b184678b696a5cbd0a921",
+  "frontend_test_method": "Local headless Chromium with generated HTML loaded in memory; no model calls",
+  "javascript_syntax": "passed",
+  "javascript_runtime_errors": [],
+  "ticket_branches_tested": ["bug", "billing", "feature", "uncertain"],
+  "viewport_widths_without_horizontal_page_overflow": [1440, 900, 390, 360],
+  "cache_example": {"tokens":50000,"calls":20,"cold_input_usd":4.0,"cached_input_usd":0.44,"result":"passed"},
+  "internal_fragment_links": "passed",
+  "publication": {"url":"https://candy-tong.github.io/common-page/research/agents/jev-claude/","http_status":200,"version_marker_matches":true,"body_git_blob_sha_matches":true,"pages_run_id":36540824372,"pages_run_conclusion":"success"},
+  "skill_unit_tests": {"count":9,"result":"passed"},
+  "coverage_check": {"result":"STRUCTURE_OK_WITH_GAPS","known_original_items":19,"supplementary_items":1,"declared_gap":"14-page PDF video not reviewed page by page"},
+  "live_model_api_calls": 0,
+  "limitations": "No live API benchmark or complete attached-video review. Structural tests do not prove semantic fidelity."
+}
