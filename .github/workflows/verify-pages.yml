@@ -1,0 +1,111 @@
+name: Verify published pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/verify-pages.yml'
+  workflow_run:
+    workflows: ['pages build and deployment']
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: verify-published-pages
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    if: github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check public homepage, project routes and assets
+        env:
+          SITE_URL: https://candy-tong.github.io/common-page/
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import re
+          import time
+          from html.parser import HTMLParser
+          from urllib.parse import urljoin, urlsplit, urlunsplit
+          from urllib.request import Request, urlopen
+
+          base = os.environ['SITE_URL']
+
+          class Assets(HTMLParser):
+              def __init__(self, text):
+                  super().__init__()
+                  self.urls = []
+                  self.feed(text)
+              def handle_starttag(self, tag, attrs):
+                  attrs = dict(attrs)
+                  if tag in ('script', 'img') and attrs.get('src'):
+                      self.urls.append(attrs['src'])
+                  if tag == 'link' and 'stylesheet' in attrs.get('rel', '') and attrs.get('href'):
+                      self.urls.append(attrs['href'])
+
+          def get(url):
+              req = Request(url, headers={'User-Agent': 'CommonPage-Deployment-Check', 'Cache-Control': 'no-cache'})
+              with urlopen(req, timeout=20) as response:
+                  if response.status != 200:
+                      raise RuntimeError(f'HTTP {response.status}: {url}')
+                  content = response.read()
+                  if not content:
+                      raise RuntimeError(f'Empty response: {url}')
+                  return content
+
+          def verify():
+              checked = []
+              home = get(base).decode('utf-8')
+              if 'COMMON PAGE' not in home or '<title>' not in home:
+                  raise RuntimeError('The shared homepage is not published yet')
+              checked.append(base)
+              manifest_url = urljoin(base, 'sites.json')
+              manifest = json.loads(get(manifest_url))
+              projects = manifest.get('sites')
+              if not isinstance(projects, list) or not projects:
+                  raise RuntimeError('Missing project entries')
+              checked.append(manifest_url)
+              for site in projects:
+                  path = site['path']
+                  if not re.fullmatch(r'[a-z0-9][a-z0-9/-]*/', path) or '//' in path:
+                      raise RuntimeError(f'Unsafe project path: {path}')
+                  url = urljoin(base, path)
+                  page = get(url).decode('utf-8')
+                  if '<title>' not in page or '<html' not in page.lower():
+                      raise RuntimeError(f'Invalid HTML page: {url}')
+                  checked.append(url)
+                  for asset in Assets(page).urls:
+                      target = urljoin(url, asset)
+                      if urlsplit(target).netloc != urlsplit(base).netloc:
+                          continue
+                      if not target.startswith(base):
+                          raise RuntimeError(f'Asset escapes repository base path: {target}')
+                      parts = urlsplit(target)
+                      target = urlunsplit((parts.scheme, parts.netloc, parts.path, parts.query, ''))
+                      get(target)
+                      checked.append(target)
+              for url in sorted(set(checked)):
+                  print('HTTP 200', url)
+              with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as summary:
+                  summary.write('## Published Pages verification passed\n\n')
+                  summary.write(f'Checked {len(projects)} project(s), the shared homepage, the manifest and local CSS/JavaScript/image assets.\n\n')
+                  for url in sorted(set(checked)):
+                      summary.write(f'- HTTP 200: {url}\n')
+
+          for attempt in range(1, 9):
+              try:
+                  verify()
+                  break
+              except Exception as exc:
+                  print(f'Attempt {attempt}/8: {type(exc).__name__}: {exc}', flush=True)
+                  if attempt == 8:
+                      raise
+                  time.sleep(10)
+          PY
