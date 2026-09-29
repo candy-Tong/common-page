@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "research_date": "2026-09-29",
+  "user_url": "https://claude.dev/blog/automating-eval-design-and-hillclimbing/",
+  "primary_source_id": "S1",
+  "claims_complete": false,
+  "scope": "Article-level research plus selected official workflow/source verification. Not an independent benchmark replication or a full audit of all linked media/code.",
+  "repository_snapshot": "8a1541c4a3ffa5a20a5a91de0dcf3f0bab1d1ef4",
+  "sources": [
+    {"id":"S1","role":"primary","url":"https://claude.dev/blog/automating-eval-design-and-hillclimbing/","title":"Automating eval design and hillclimbing with Claude","author":"Lance Martin","date":"2026-09-28","type":"web_article","read_status":"read","locator":"Article text retrieved through web search, workflow and two reported experiments","reading_scope":"Author-reported findings; no raw per-case internal evaluation results or independent model calls."},
+    {"id":"S2","role":"official","parent":"S1","url":"https://github.com/anthropics/skills/blob/8a1541c4a3ffa5a20a5a91de0dcf3f0bab1d1ef4/skills/claude-api/shared/evals/build-eval.md","read_status":"partial","locator":"Steps 0-2: scope, sourcing inputs, approval and grading","visible_gap_text":"对照官方工作流和部分运行器源码","reading_scope":"Workflow sections reviewed; not a full code execution or all linked resources."},
+    {"id":"S3","role":"official","parent":"S1","url":"https://github.com/anthropics/skills/blob/8a1541c4a3ffa5a20a5a91de0dcf3f0bab1d1ef4/skills/claude-api/shared/evals/eval-hillclimb.md","read_status":"partial","locator":"Prerequisites, scope, noise checks, split, baseline and iteration loop","visible_gap_text":"对照官方工作流和部分运行器源码","reading_scope":"Selected workflow sections and implementation contract, not independent execution."},
+    {"id":"S4","role":"official","parent":"S1","url":"https://github.com/anthropics/skills/blob/8a1541c4a3ffa5a20a5a91de0dcf3f0bab1d1ef4/skills/claude-api/shared/evals/report/runner-scaffold.mjs","read_status":"partial","locator":"Lines 1-125: adaptation points, structural properties and filesystem guards","visible_gap_text":"核对了接入点、文件头和安全辅助代码，未声称验证全部实现。"},
+    {"id":"S5","role":"official","url":"https://github.com/anthropics/skills/commit/8a1541c4a3ffa5a20a5a91de0dcf3f0bab1d1ef4","read_status":"read","locator":"Commit metadata, timestamp and changed-file directory listing"},
+    {"id":"S6","role":"official","url":"https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents","read_status":"read","locator":"Outcomes versus transcripts; programmatic graders, model graders and human calibration"},
+    {"id":"S7","role":"official","url":"https://arxiv.org/abs/1506.02629","read_status":"read","locator":"Abstract only; holdout reuse and adaptive overfitting","reading_scope":"Abstract, not full paper; no claim to implement its algorithm."},
+    {"id":"S8","role":"official","url":"https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site","read_status":"read","locator":"GitHub Pages static hosting and publication requirements"},
+    {"id":"P1","role":"project","url":"https://github.com/candy-Tong/common-page/tree/main/research/agents/claude-eval-hillclimb","read_status":"read","locator":"Original explanatory page and explicitly simulated walkthroughs created for this research"}
+  ],
+  "expected_original_ids": ["build-eval-flow","hillclimb-flow","support-ticket-experiment","api-skill-experiment"],
+  "coverage": [
+    {"id":"build-eval-flow","source":"S1","kind":"original_step","locator":"Article explanation of /claude-api build-eval; official S2 adds implementation detail","anchor":"workflow","status":"covered"},
+    {"id":"hillclimb-flow","source":"S1","kind":"original_step","locator":"Article explanation of /claude-api hillclimb; S3 clarifies split and iteration design","anchor":"workflow","status":"covered"},
+    {"id":"support-ticket-experiment","source":"S1","kind":"original_case","locator":"Cost optimization example: 44 support tickets, 30 search, 14 held out; configuration changes and outcomes","anchor":"evidence","status":"covered","measurement_identity":"author_reported","denominator":{"tickets":44,"search":30,"held_out":14},"search_accuracy_percent":[74.4,87.8,88.9,98.9],"heldout_accuracy_percent":[78.6,90.5],"cost_scope":"token cost per ticket, not total optimization cost"},
+    {"id":"api-skill-experiment","source":"S1","kind":"original_case","locator":"API skill hillclimb: capability instructions, type tables, API patterns, later grader/task repairs","anchor":"evidence","status":"covered","measurement_identity":"author_reported","boundary":"Later grader changes confound attribution of the complete score increase to the skill."},
+    {"id":"runner-integration","source":"S4","kind":"supplementary","locator":"Header: loadCases / runCase / gradeCase adaptation points","anchor":"workflow","status":"covered"},
+    {"id":"email-routing-demo","source":"P1","kind":"supplementary","locator":"LABS[0], three strategies and six stages; all scores preset","anchor":"lab","status":"covered","measurement_identity":"teaching_simulation"},
+    {"id":"skill-trigger-demo","source":"P1","kind":"supplementary","locator":"LABS[1], positive/negative activation behavior","anchor":"lab","status":"covered","measurement_identity":"teaching_simulation"},
+    {"id":"cost-guardrail-demo","source":"P1","kind":"supplementary","locator":"LABS[2], avoid confusing less work with equal quality","anchor":"lab","status":"covered","measurement_identity":"teaching_simulation"},
+    {"id":"holdout-bias-analysis","source":"S7","kind":"supplementary","locator":"Abstract on adaptively reused holdout; applied as analysis to S3 default split","anchor":"audit","status":"covered"},
+    {"id":"noise-calculator","source":"P1","kind":"supplementary","locator":"Independent equal-probability Bernoulli normal approximation; explicitly not a paired-difference significance test","anchor":"audit","status":"covered","measurement_identity":"mathematical_illustration"}
+  ],
+  "not_performed": ["Independent reproduction of author internal datasets", "Paid Claude API evaluation", "Full runner code audit", "Verification of every externally linked resource and all embedded media"],
+  "original_examples_replaced_by_simulations": false
+}

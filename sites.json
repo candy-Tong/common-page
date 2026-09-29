@@ -9,6 +9,15 @@
       "path": "research/agents/jev-claude/",
       "date": "2026-09-29",
       "tags": ["Jev", "Claude", "Agent", "落地案例", "企业流程", "Hooks"]
+    },
+    {
+      "id": "claude-eval-hillclimb",
+      "title": "先让分数可信｜Claude 自动评估与优化",
+      "description": "自动评估设计与 hillclimbing 的交互研究：三组教学模拟、原文实验数据、可交互论证图、噪声计算器与落地说明。作者报告、本页分析和模拟数据分开标注。",
+      "category": "研究 / AI AGENTS",
+      "path": "research/agents/claude-eval-hillclimb/",
+      "date": "2026-09-29",
+      "tags": ["Claude", "Eval", "Hillclimbing", "评估设计", "提示词优化", "成本优化"]
     }
   ]
 }
